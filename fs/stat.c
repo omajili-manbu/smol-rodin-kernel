@@ -21,6 +21,9 @@
 #include <linux/iversion.h>
 
 #ifdef CONFIG_KSU_SUSFS
+#include <linux/susfs.h>
+#endif
+#ifdef CONFIG_KSU_SUSFS
 #include <linux/susfs_def.h>
 #include <linux/version.h>
 #endif
@@ -35,6 +38,12 @@ extern void susfs_sus_kstat_spoof_generic_fillattr(struct inode *inode, struct k
 #endif
 #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
 extern int susfs_get_non_sus_mnt_id_from_mnt(struct mount *orig_mnt);
+#endif
+#ifdef CONFIG_KSU_SUSFS_HIDDEN_NAME
+extern bool susfs_is_hidden_name(const char *name, int namlen, uid_t caller_uid);
+#endif
+#ifdef CONFIG_KSU_SUSFS_UNICODE_FILTER
+extern bool susfs_check_unicode_bypass(const char __user *filename);
 #endif
 
 /**
@@ -302,6 +311,12 @@ orig_flow:
 #endif
 
 
+#ifdef CONFIG_KSU_SUSFS_UNICODE_FILTER
+	if (!IS_ERR(filename) && susfs_check_unicode_bypass(filename->uptr)) {
+		return -ENOENT;
+	}
+#endif
+
 	if (flags & ~(AT_SYMLINK_NOFOLLOW | AT_NO_AUTOMOUNT | AT_EMPTY_PATH |
 		      AT_STATX_SYNC_TYPE))
 		return -EINVAL;
@@ -310,6 +325,29 @@ retry:
 	error = filename_lookup(dfd, filename, lookup_flags, &path, NULL);
 	if (error)
 		goto out;
+
+#ifdef CONFIG_KSU_SUSFS_HIDDEN_NAME
+	if (current_uid().val >= 10000 &&
+	    susfs_is_current_proc_umounted()) {
+		struct dentry *_d = path.dentry;
+		struct dentry *_par = _d->d_parent;
+		if (_par && _par != _d && _par->d_parent) {
+			int _plen = _par->d_name.len;
+			if ((_plen == 4 && !memcmp(_par->d_name.name, "data", 4)) ||
+			    (_plen == 3 && !memcmp(_par->d_name.name, "obb", 3))) {
+				struct dentry *_gp = _par->d_parent;
+				if (_gp->d_name.len == 7 &&
+				    !memcmp(_gp->d_name.name, "Android", 7) &&
+				    susfs_is_hidden_name(_d->d_name.name,
+				        _d->d_name.len, current_uid().val)) {
+					path_put(&path);
+					error = -ENOENT;
+					goto out;
+				}
+			}
+		}
+	}
+#endif
 
 	error = vfs_getattr(&path, stat, request_mask, flags);
 
@@ -562,6 +600,10 @@ static int do_readlinkat(int dfd, const char __user *pathname,
 	int empty = 0;
 	unsigned int lookup_flags = LOOKUP_EMPTY;
 
+#ifdef CONFIG_KSU_SUSFS_UNICODE_FILTER
+	if (susfs_check_unicode_bypass(pathname))
+		return -ENOENT;
+#endif
 	if (bufsiz <= 0)
 		return -EINVAL;
 

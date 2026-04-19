@@ -41,6 +41,9 @@
 #include <linux/bitops.h>
 #include <linux/init_task.h>
 #include <linux/uaccess.h>
+#ifdef CONFIG_KSU_SUSFS
+#include <linux/susfs.h>
+#endif
 #if defined(CONFIG_KSU_SUSFS_SUS_PATH) || defined(CONFIG_KSU_SUSFS_OPEN_REDIRECT)
 #include <linux/susfs_def.h>
 #endif
@@ -51,6 +54,9 @@
 #ifdef CONFIG_KSU_SUSFS_SUS_PATH
 extern bool susfs_is_inode_sus_path(struct mnt_idmap* idmap, struct inode *inode);
 extern const struct qstr susfs_fake_qstr_name;
+#endif
+#ifdef CONFIG_KSU_SUSFS_UNICODE_FILTER
+extern bool susfs_check_unicode_bypass(const char __user *filename);
 #endif
 
 /* [Feb-1997 T. Schoebel-Theuer]
@@ -3618,7 +3624,8 @@ skip_orig_flow:
 	if (d_in_lookup(dentry)) {
 		struct dentry *res = dir_inode->i_op->lookup(dir_inode, dentry,
 							     nd->flags);
-		d_lookup_done(dentry);
+		if (d_in_lookup(dentry))
+			d_lookup_done(dentry);
 		if (unlikely(res)) {
 			if (IS_ERR(res)) {
 				error = PTR_ERR(res);
@@ -4280,6 +4287,12 @@ int do_mkdirat(int dfd, struct filename *name, umode_t mode)
 	int error;
 	unsigned int lookup_flags = LOOKUP_DIRECTORY;
 
+#ifdef CONFIG_KSU_SUSFS_UNICODE_FILTER
+	if (!IS_ERR(name) && susfs_check_unicode_bypass(name->uptr)) {
+		error = -ENOENT;
+		goto out_putname;
+	}
+#endif
 retry:
 	dentry = filename_create(dfd, name, &path, lookup_flags);
 	error = PTR_ERR(dentry);
@@ -4516,6 +4529,12 @@ int do_unlinkat(int dfd, struct filename *name)
 	struct inode *inode = NULL;
 	struct inode *delegated_inode = NULL;
 	unsigned int lookup_flags = 0;
+#ifdef CONFIG_KSU_SUSFS_UNICODE_FILTER
+	if (!IS_ERR(name) && susfs_check_unicode_bypass(name->uptr)) {
+		error = -ENOENT;
+		goto exit1;
+	}
+#endif
 retry:
 	error = filename_parentat(dfd, name, lookup_flags, &path, &last, &type);
 	if (error)
@@ -4640,6 +4659,12 @@ int do_symlinkat(struct filename *from, int newdfd, struct filename *to)
 	struct path path;
 	unsigned int lookup_flags = 0;
 
+#ifdef CONFIG_KSU_SUSFS_UNICODE_FILTER
+	if (!IS_ERR(to) && susfs_check_unicode_bypass(to->uptr)) {
+		error = -ENOENT;
+		goto out_putnames;
+	}
+#endif
 	if (IS_ERR(from)) {
 		error = PTR_ERR(from);
 		goto out_putnames;
@@ -4784,6 +4809,12 @@ int do_linkat(int olddfd, struct filename *old, int newdfd,
 	int how = 0;
 	int error;
 
+#ifdef CONFIG_KSU_SUSFS_UNICODE_FILTER
+	if (!IS_ERR(new) && susfs_check_unicode_bypass(new->uptr)) {
+		error = -ENOENT;
+		goto out_putnames;
+	}
+#endif
 	if ((flags & ~(AT_SYMLINK_FOLLOW | AT_EMPTY_PATH)) != 0) {
 		error = -EINVAL;
 		goto out_putnames;
@@ -5078,6 +5109,13 @@ int do_renameat2(int olddfd, struct filename *from, int newdfd,
 	bool should_retry = false;
 	int error = -EINVAL;
 
+#ifdef CONFIG_KSU_SUSFS_UNICODE_FILTER
+	if ((!IS_ERR(from) && susfs_check_unicode_bypass(from->uptr)) ||
+	    (!IS_ERR(to) && susfs_check_unicode_bypass(to->uptr))) {
+		error = -ENOENT;
+		goto put_names;
+	}
+#endif
 	if (flags & ~(RENAME_NOREPLACE | RENAME_EXCHANGE | RENAME_WHITEOUT))
 		goto put_names;
 

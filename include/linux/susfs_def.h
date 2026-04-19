@@ -19,6 +19,7 @@
 #define CMD_SUSFS_ADD_SUS_KSTAT 0x55570
 #define CMD_SUSFS_UPDATE_SUS_KSTAT 0x55571
 #define CMD_SUSFS_ADD_SUS_KSTAT_STATICALLY 0x55572
+#define CMD_SUSFS_ADD_SUS_KSTAT_REDIRECT 0x55573
 #define CMD_SUSFS_ADD_TRY_UMOUNT 0x55580 /* deprecated */
 #define CMD_SUSFS_SET_UNAME 0x55590
 #define CMD_SUSFS_ENABLE_LOG 0x555a0
@@ -63,6 +64,7 @@
 #define AS_FLAGS_SUS_KSTAT 35
 #define AS_FLAGS_OPEN_REDIRECT 36
 #define AS_FLAGS_SUS_MAP 39
+#define AS_FLAGS_SUS_PATH_PARENT 41
 
 #define ND_STATE_LOOKUP_LAST 32
 #define ND_STATE_OPEN_LAST 64
@@ -119,4 +121,12 @@ static inline bool susfs_is_current_proc_umounted_app(void) {
 		inode && inode->i_mapping && \
 		unlikely(test_bit(AS_FLAGS_OPEN_REDIRECT, &inode->i_mapping->flags)) && \
 		susfs_is_current_proc_umounted_app()
+#ifdef CONFIG_ZEROMOUNT
+extern bool zeromount_is_uid_blocked(uid_t uid);
+static inline bool susfs_is_uid_zeromount_excluded(uid_t uid) {
+	return zeromount_is_uid_blocked(uid);
+}
+#else
+static inline bool susfs_is_uid_zeromount_excluded(uid_t uid) { return false; }
+#endif
 #endif // #ifndef KSU_SUSFS_DEF_H
