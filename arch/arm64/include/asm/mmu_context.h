@@ -148,14 +148,24 @@ static inline void cpu_install_ttbr0(phys_addr_t ttbr0, unsigned long t0sz)
 	isb();
 }
 
+typedef void (ttbr_replace_func)(phys_addr_t);
+extern ttbr_replace_func idmap_cpu_replace_ttbr1;
+
 /*
  * Atomically replaces the active TTBR1_EL1 PGD with a new VA-compatible PGD,
  * avoiding the possibility of conflicting TLB entries being allocated.
+ *
+ * idmap_cpu_replace_ttbr1 is invoked via its *physical* address, obtained
+ * through __pa_symbol(), from within an identity-mapped (idmap) context where
+ * phys == virt.  A kCFI check on that indirect call is impossible in general
+ * (it would dereference physical_addr-4, not the virtual CFI stub), so this
+ * function is marked __nocfi.  For the same reason, idmap_cpu_replace_ttbr1
+ * is defined with SYM_FUNC_START rather than SYM_TYPED_FUNC_START in proc.S:
+ * it carries no kCFI type preamble and must not be reached via a kCFI-checked
+ * pointer from any other context.
  */
-static inline void cpu_replace_ttbr1(pgd_t *pgdp, pgd_t *idmap)
+static inline void __nocfi cpu_replace_ttbr1(pgd_t *pgdp, pgd_t *idmap)
 {
-	typedef void (ttbr_replace_func)(phys_addr_t);
-	extern ttbr_replace_func idmap_cpu_replace_ttbr1;
 	ttbr_replace_func *replace_phys;
 	unsigned long daif;
 

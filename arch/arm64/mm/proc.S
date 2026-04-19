@@ -185,8 +185,19 @@ SYM_FUNC_END(cpu_do_resume)
  *
  * This is the low-level counterpart to cpu_replace_ttbr1, and should not be
  * called by anything else. It can only be executed from a TTBR0 mapping.
+ *
+ * It is intentionally defined with SYM_FUNC_START rather than
+ * SYM_TYPED_FUNC_START.  cpu_replace_ttbr1() calls this function via its
+ * *physical* address (obtained through __pa_symbol()) from an identity-mapped
+ * context, so the call site is marked __nocfi and no kCFI type-check is
+ * performed.  Using SYM_TYPED_FUNC_START would emit a
+ * ".4byte __kcfi_typeid_idmap_cpu_replace_ttbr1" preamble whose symbol is
+ * only defined by the C compiler when it emits a kCFI check for the indirect
+ * call.  Under CONFIG_LTO_CLANG_FULL the compiler eliminates that check
+ * (seeing the physical-address assignment through __pa_symbol), so the symbol
+ * is never defined, causing an undefined-symbol link error.
  */
-SYM_TYPED_FUNC_START(idmap_cpu_replace_ttbr1)
+SYM_FUNC_START(idmap_cpu_replace_ttbr1)
 	__idmap_cpu_set_reserved_ttbr1 x1, x3
 
 	offset_ttbr1 x0, x3
