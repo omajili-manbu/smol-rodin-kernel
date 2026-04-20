@@ -157,7 +157,7 @@ struct susfs_hidden_name_entry {
 };
 
 static DEFINE_HASHTABLE(susfs_hidden_names, 8);
-static DEFINE_SPINLOCK(susfs_hidden_names_lock);
+static DEFINE_MUTEX(susfs_hidden_names_lock);
 
 static u32 susfs_name_hash(const char *name, int namlen)
 {
@@ -217,9 +217,9 @@ static void susfs_add_hidden_name(const char *name, int namlen, uid_t owner_uid)
 	entry->name[namlen] = '\0';
 	entry->namlen = namlen;
 	entry->owner_uid = owner_uid;
-	spin_lock(&susfs_hidden_names_lock);
+	mutex_lock(&susfs_hidden_names_lock);
 	hash_add_rcu(susfs_hidden_names, &entry->node, key);
-	spin_unlock(&susfs_hidden_names_lock);
+	mutex_unlock(&susfs_hidden_names_lock);
 }
 
 static void susfs_try_register_hidden_name(const char *pathname)
@@ -259,7 +259,7 @@ static void susfs_try_register_hidden_name(const char *pathname)
 	susfs_add_hidden_name(basename, namlen, owner_uid);
 }
 
-static DEFINE_SPINLOCK(susfs_hidden_inos_lock);
+static DEFINE_MUTEX(susfs_hidden_inos_lock);
 
 bool susfs_is_hidden_ino(struct super_block *sb, unsigned long ino)
 {
@@ -335,9 +335,9 @@ void susfs_add_sus_path(void __user **user_info) {
 				if (new_entry) {
 					new_entry->ino = fi->inode.i_ino;
 					new_entry->sb = fi->inode.i_sb;
-					spin_lock(&susfs_hidden_inos_lock);
+					mutex_lock(&susfs_hidden_inos_lock);
 					hash_add_rcu(susfs_hidden_inos, &new_entry->node, key);
-					spin_unlock(&susfs_hidden_inos_lock);
+					mutex_unlock(&susfs_hidden_inos_lock);
 				}
 			}
 		}
@@ -370,9 +370,9 @@ void susfs_add_sus_path(void __user **user_info) {
 			if (new_entry) {
 				new_entry->ino = inode->i_ino;
 				new_entry->sb = inode->i_sb;
-				spin_lock(&susfs_hidden_inos_lock);
+				mutex_lock(&susfs_hidden_inos_lock);
 				hash_add_rcu(susfs_hidden_inos, &new_entry->node, key);
-				spin_unlock(&susfs_hidden_inos_lock);
+				mutex_unlock(&susfs_hidden_inos_lock);
 			}
 		}
 	}
@@ -500,9 +500,9 @@ static void susfs_run_sus_path_loop(void) {
 						if (new_entry) {
 							new_entry->ino = fi->inode.i_ino;
 							new_entry->sb = fi->inode.i_sb;
-							spin_lock(&susfs_hidden_inos_lock);
+							mutex_lock(&susfs_hidden_inos_lock);
 							hash_add_rcu(susfs_hidden_inos, &new_entry->node, key);
-							spin_unlock(&susfs_hidden_inos_lock);
+							mutex_unlock(&susfs_hidden_inos_lock);
 						}
 					}
 				}
@@ -530,9 +530,9 @@ static void susfs_run_sus_path_loop(void) {
 						if (new_entry) {
 							new_entry->ino = inode->i_ino;
 							new_entry->sb = inode->i_sb;
-							spin_lock(&susfs_hidden_inos_lock);
+							mutex_lock(&susfs_hidden_inos_lock);
 							hash_add_rcu(susfs_hidden_inos, &new_entry->node, key);
-							spin_unlock(&susfs_hidden_inos_lock);
+							mutex_unlock(&susfs_hidden_inos_lock);
 						}
 					}
 				}
@@ -1100,12 +1100,12 @@ void susfs_add_sus_kstat_redirect(void __user **user_info) {
 		virtual_entry->info.target_ino = virtual_ino;
 	}
 
-	spin_lock(&susfs_spin_lock_sus_kstat);
+	mutex_lock(&susfs_mutex_lock_sus_kstat);
 	hash_add_rcu(SUS_KSTAT_HLIST, &new_entry->node, new_entry->target_ino);
 	if (virtual_entry) {
 		hash_add_rcu(SUS_KSTAT_HLIST, &virtual_entry->node, virtual_ino);
 	}
-	spin_unlock(&susfs_spin_lock_sus_kstat);
+	mutex_unlock(&susfs_mutex_lock_sus_kstat);
 
 	SUSFS_LOGI("kstat_redirect: RPATH_OK ino=%lu dev=%lu '%s'\n",
 	           new_entry->target_ino, new_entry->info.spoofed_dev, info.real_pathname);
