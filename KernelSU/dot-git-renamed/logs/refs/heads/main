@@ -1,0 +1,35 @@
+0000000000000000000000000000000000000000 99739a524efbcf0285557086187b3702206e012c KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1776568069 -0300	clone: from https://github.com/tiann/KernelSU
+99739a524efbcf0285557086187b3702206e012c f85e492a7919664b15f5562fb42d09d8c3a098dd KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1776568275 -0300	commit: susfs by simonpunk
+f85e492a7919664b15f5562fb42d09d8c3a098dd 55edcb724173449248781724cb800ebd9502e485 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1776568781 -0300	commit: KowSU
+55edcb724173449248781724cb800ebd9502e485 483aa417216edc1d39e737f67c39beb06c690cf1 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1776608999 -0300	merge 2e148da0a8fff4c4a55e1c73b1697fa4f074a9e3: Merge made by the 'ort' strategy.
+483aa417216edc1d39e737f67c39beb06c690cf1 966e6cfd2f685f8ab5ecd7791aadb7b4fba9075f KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1776711884 -0300	rebase (finish): refs/heads/main onto 2e148da0a8fff4c4a55e1c73b1697fa4f074a9e3
+966e6cfd2f685f8ab5ecd7791aadb7b4fba9075f 90d48f960ac3c364c8a495372fc2ae22caabc6ec KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1776949289 -0300	commit: susfs bump
+90d48f960ac3c364c8a495372fc2ae22caabc6ec 2d9822d1b8ccbd79d3e43cf1b423b72d79fccd00 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1777032462 -0300	merge e50e3b06f2bdd58b92fbe37ccec186de6d12fbbe: Merge made by the 'ort' strategy.
+2d9822d1b8ccbd79d3e43cf1b423b72d79fccd00 12adf2be0b1f0a6dfd493ea7f2d91375c0022090 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1777295450 -0300	merge 7fb5fd3e29245ac0413871444522b1b96bbb62d7: Merge made by the 'ort' strategy.
+12adf2be0b1f0a6dfd493ea7f2d91375c0022090 58e1a0213521cd7908b8fcc04710a8c3f11bbf7f KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1777295562 -0300	rebase (finish): refs/heads/main onto 7fb5fd3e29245ac0413871444522b1b96bbb62d7
+58e1a0213521cd7908b8fcc04710a8c3f11bbf7f 297502d595b002e56c8707661955c5b094bf4f07 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1777296999 -0300	commit: susfs
+297502d595b002e56c8707661955c5b094bf4f07 3a338258f27ee4d0ac10580a58a9724e8e810218 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1777321794 -0300	commit: susfs bump
+3a338258f27ee4d0ac10580a58a9724e8e810218 58e1a0213521cd7908b8fcc04710a8c3f11bbf7f KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1777395982 -0300	reset: moving to HEAD~2
+58e1a0213521cd7908b8fcc04710a8c3f11bbf7f f184d65859398ab2edc4865be279075b6f36bde9 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1777396005 -0300	commit: susfs by simonpunk
+f184d65859398ab2edc4865be279075b6f36bde9 58e1a0213521cd7908b8fcc04710a8c3f11bbf7f KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1777549401 -0300	reset: moving to HEAD~1
+58e1a0213521cd7908b8fcc04710a8c3f11bbf7f 1bafa8b9adfbdb045499cbf847c2c1c312d17519 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1777549419 -0300	commit: susfs by simonpunk
+1bafa8b9adfbdb045499cbf847c2c1c312d17519 f86bd59ba4fd194b1707a259c2e5275df1ac55c0 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1777756369 -0300	rebase (finish): refs/heads/main onto cc83433bb08d2384b10ea2535fafc6086743968b
+f86bd59ba4fd194b1707a259c2e5275df1ac55c0 a52d01e0eaad05f5e83ca5a974828d5fb852d69e KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1777756399 -0300	commit: susfs bump
+a52d01e0eaad05f5e83ca5a974828d5fb852d69e 4f97384b86b3e5798c56a53be2f9f773d2a640dd KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1777756416 -0300	rebase (finish): refs/heads/main onto f86bd59ba4fd194b1707a259c2e5275df1ac55c0
+4f97384b86b3e5798c56a53be2f9f773d2a640dd 3f388ef137c78e1ca0c92c0ada3b8717cdcc4302 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1778594776 -0300	reset: moving to FETCH_HEAD
+3f388ef137c78e1ca0c92c0ada3b8717cdcc4302 47fca381c083e3ceffda1cdb0ca2269e6a766a68 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1778594855 -0300	cherry-pick: KowSU
+47fca381c083e3ceffda1cdb0ca2269e6a766a68 ad1b3dd799cf4045f05af73884bb14dbdff72edf KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1778595627 -0300	commit: susfs
+ad1b3dd799cf4045f05af73884bb14dbdff72edf 777adcf1fb3ac1f69b4e2a98fd291e0d034b15e3 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1778786956 -0300	merge a1a039726f306cbe166e14abac81472d2aa1ff0c: Merge made by the 'ort' strategy.
+777adcf1fb3ac1f69b4e2a98fd291e0d034b15e3 4c990695737a3379793737a48eee84453982ebde KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1779104001 -0300	rebase (finish): refs/heads/main onto 44658b6949328dab732cd49c125bdd582f4a5fef
+4c990695737a3379793737a48eee84453982ebde a6041e196bd6545cc0352b07ee9c2565fa0b2624 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1779104331 -0300	commit: susfs by simonpunk
+a6041e196bd6545cc0352b07ee9c2565fa0b2624 d239f7102498689d32ca501b740f3fc21065928d KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1779295652 -0300	merge 4d3c47c9e64eae141443474ec5c0297d5488d839: Merge made by the 'ort' strategy.
+d239f7102498689d32ca501b740f3fc21065928d 809ed4f9e1c24768a11e0eaa358b23d721c43cba KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1779742713 -0300	merge 1bf6ff19163d0a175c6c16696dca329e7fcdf9f1: Merge made by the 'ort' strategy.
+809ed4f9e1c24768a11e0eaa358b23d721c43cba 78a8e9f7036a2680e8ce9803693566496040b256 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1779743095 -0300	rebase (finish): refs/heads/main onto 1bf6ff19163d0a175c6c16696dca329e7fcdf9f1
+78a8e9f7036a2680e8ce9803693566496040b256 c2a4feddf7b867cc4e1ffb0090e3c4d3bf540caa KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1779812287 -0300	pull (finish): refs/heads/main onto b43637ac8ad61163faae5fdce5d0512b4eabaa4d
+c2a4feddf7b867cc4e1ffb0090e3c4d3bf540caa c8690d0e7662aba27b6b2c4337c7d7e06cb77a96 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1779898834 -0300	reset: moving to HEAD~1
+c8690d0e7662aba27b6b2c4337c7d7e06cb77a96 ac19e148f57f8cfb5036e430ea92ab2750ad8c83 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1779899529 -0300	commit: susfs by simonpunk
+ac19e148f57f8cfb5036e430ea92ab2750ad8c83 c8690d0e7662aba27b6b2c4337c7d7e06cb77a96 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1779899613 -0300	reset: moving to HEAD~1
+c8690d0e7662aba27b6b2c4337c7d7e06cb77a96 db487c1fef49f0091b2cc7d2cf7b290e18e11ba7 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1779899619 -0300	rebase (finish): refs/heads/main onto 9ab31068345d5811160d74ff0dec79c51b1ce9c3
+db487c1fef49f0091b2cc7d2cf7b290e18e11ba7 6be3d2d24fcc332c8835bebdd3e5cb2f5cde28f7 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1779901002 -0300	commit: susfs by simonpunk
+6be3d2d24fcc332c8835bebdd3e5cb2f5cde28f7 db487c1fef49f0091b2cc7d2cf7b290e18e11ba7 KyunLFA <user.naem> 1779932485 -0300	reset: moving to HEAD~1
+db487c1fef49f0091b2cc7d2cf7b290e18e11ba7 26db8ef6604ac756380f1432d1fde29be6c9b6c2 KyunLFA <user.naem> 1779932492 -0300	commit: susfs by simonpunk

@@ -1,0 +1,19 @@
+KowSU manager support
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Mon May 25 22:14:46 2026 -0300
+#
+# interactive rebase in progress; onto 9c874d47
+# Last command done (1 command done):
+#    edit 0d3b2d99 # KowSU manager support
+# No commands remaining.
+# You are currently editing a commit while rebasing branch 'main' on '9c874d47'.
+#
+# Changes to be committed:
+#	modified:   kernel/manager/apk_sign.c
+#
+# Untracked files:
+#	THIS_IS_KERNELSU_BY_TIANN_NOT_MINE.md
+#

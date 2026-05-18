@@ -1,0 +1,7 @@
+0000000000000000000000000000000000000000 1bf6ff19163d0a175c6c16696dca329e7fcdf9f1 KyunLFA <user.naem> 1779757899 -0300	clone: from https://github.com/tiann/KernelSU.git
+1bf6ff19163d0a175c6c16696dca329e7fcdf9f1 9c874d47d875b03b0ddf2e5b0588d5e51381e8bf KyunLFA <user.naem> 1779758050 -0300	commit: susfs by simonpunk
+9c874d47d875b03b0ddf2e5b0588d5e51381e8bf 0d3b2d99902c1a462023d00cbe684a3e603cc01c KyunLFA <user.naem> 1779758086 -0300	commit: KowSU manager support
+0d3b2d99902c1a462023d00cbe684a3e603cc01c 9c874d47d875b03b0ddf2e5b0588d5e51381e8bf KyunLFA <user.naem> 1779759112 -0300	rebase (start): checkout HEAD~1
+9c874d47d875b03b0ddf2e5b0588d5e51381e8bf 0d3b2d99902c1a462023d00cbe684a3e603cc01c KyunLFA <user.naem> 1779759112 -0300	rebase: fast-forward
+0d3b2d99902c1a462023d00cbe684a3e603cc01c 5be469766de8a6612293c27a3d34d7a562055cab KyunLFA <user.naem> 1779759157 -0300	rebase (continue): KowSU manager support
+5be469766de8a6612293c27a3d34d7a562055cab 5be469766de8a6612293c27a3d34d7a562055cab KyunLFA <user.naem> 1779759160 -0300	rebase (finish): returning to refs/heads/main

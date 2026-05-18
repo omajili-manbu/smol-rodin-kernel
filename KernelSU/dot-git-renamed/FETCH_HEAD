@@ -1,0 +1,25 @@
+9ab31068345d5811160d74ff0dec79c51b1ce9c3		branch 'main' of https://github.com/tiann/KernelSU
+d87863713934bfc013536eb3c7a43e4efa34bfce	not-for-merge	branch 'aviraxp-patch-1' of https://github.com/tiann/KernelSU
+63a850802fed0277758975d5ca39859ddda9e499	not-for-merge	branch 'aviraxp-patch-3' of https://github.com/tiann/KernelSU
+b2b42f5df30042c91832bc6bf3d112ea17cd5f33	not-for-merge	branch 'buildksuinit' of https://github.com/tiann/KernelSU
+be722e921744a883c90f549b7974bcd0a98c8ed5	not-for-merge	branch 'copilot/add-copilot-instructions' of https://github.com/tiann/KernelSU
+9b241ac5c8257c6d43127cb6a6c534595e7a0d75	not-for-merge	branch 'copilot/fix-2723' of https://github.com/tiann/KernelSU
+190ad49206bdf5a25788d5e83c99fc48dc64d94d	not-for-merge	branch 'dependabot/cargo/crates-c04ba36e0d' of https://github.com/tiann/KernelSU
+5b729b0469f25f38199e9f14d5653f8b211b0dc3	not-for-merge	branch 'dependabot/cargo/userspace/ksud/crates-b14cf5e280' of https://github.com/tiann/KernelSU
+e0bf8d5540ce39140a672eb0204ed1e51b00653a	not-for-merge	branch 'dependabot/github_actions/actions-c25ad74275' of https://github.com/tiann/KernelSU
+46acf2d18bac84a95b334be7cab5eb79c0af08c2	not-for-merge	branch 'dependabot/gradle/manager/maven-72db779c46' of https://github.com/tiann/KernelSU
+f01f398724bc05157878ccee207117b40ac6025c	not-for-merge	branch 'dependabot/npm_and_yarn/website/npm-7c23ce6cb3' of https://github.com/tiann/KernelSU
+16a2a9c50c2936aaabd952bf2b29249c09eddb4b	not-for-merge	branch 'dev' of https://github.com/tiann/KernelSU
+94d2ade4ef65f34314aa981f032ad8e167a80438	not-for-merge	branch 'gh-pages' of https://github.com/tiann/KernelSU
+318c8a31903caab6e378f0895331d55aaab0129a	not-for-merge	branch 'id' of https://github.com/tiann/KernelSU
+5180e4add49a3652d4e8181a0dc7324d27ff58e1	not-for-merge	branch 'ksepol' of https://github.com/tiann/KernelSU
+e23f15aeb641732c76fb2cadbd81d9d2452994b7	not-for-merge	branch 'ksufs' of https://github.com/tiann/KernelSU
+6a3107fda1ea96d77e0f27af174a7328423dd54d	not-for-merge	branch 'lkm-api' of https://github.com/tiann/KernelSU
+dbf2597115a7afa75ce274b13962c75d17e11e15	not-for-merge	branch 'lsmhook' of https://github.com/tiann/KernelSU
+1639bcbff30f5c1573b1d09ae7b5aa04b0f72401	not-for-merge	branch 'parser' of https://github.com/tiann/KernelSU
+993723361d81c2262cab260163da3228dbf35022	not-for-merge	branch 'preload' of https://github.com/tiann/KernelSU
+82787bbac732ed030867eac742748dda185bd5cb	not-for-merge	branch 'proctag' of https://github.com/tiann/KernelSU
+a075749fa90dfda44447b4dce824d5a1503e97ee	not-for-merge	branch 'thin-manager' of https://github.com/tiann/KernelSU
+31f06fb954874ea9c5fb06614891f0325bd285cf	not-for-merge	branch 'translation' of https://github.com/tiann/KernelSU
+d973ef033e627e649ba83891ad5cbe1481582dbe	not-for-merge	branch 'unload' of https://github.com/tiann/KernelSU
+8518697a17d1840b95d022361ad477dcef068c3e	not-for-merge	branch 'webui_file' of https://github.com/tiann/KernelSU
