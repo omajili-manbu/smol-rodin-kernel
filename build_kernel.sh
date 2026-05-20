@@ -4,7 +4,7 @@ set -e
 # Configuration
 DIR=$(readlink -f .)
 MAIN=$(readlink -f ${DIR}/..)
-KERNEL_DEFCONFIG=capybara_defconfig
+KERNEL_DEFCONFIG=smol_defconfig
 CLANG_DIR="$MAIN/toolchains/clang"
 KERNEL_DIR=$(pwd)
 OUT_DIR="$KERNEL_DIR/out"
@@ -46,8 +46,8 @@ make O="$OUT_DIR" CC=clang LLVM=1 LLVM_IAS=1 KCFLAGS="-w" $KERNEL_DEFCONFIG || e
 make -j16 O="$OUT_DIR" CC=clang LLVM=1 LLVM_IAS=1 KCFLAGS="-w" || exit 1
 
 # Clean up old kernel zip files
-echo "Cleaning up old kernel zip files..."
-find "$KERNEL_DIR" -maxdepth 1 -type f -name "Capybara-GKI-*.zip" -exec rm -v {} \;
+# echo "Cleaning up old kernel zip files..."
+# find "$KERNEL_DIR" -maxdepth 1 -type f -name "Smol-GKI-*.zip" -exec rm -v {} \;
 
 # Create temporary anykernel directory
 TIME=$(date "+%Y%m%d-%H%M%S")
@@ -74,7 +74,7 @@ TIME=$(date "+%Y%m%d-%H%M%S")
 
 # Create zip file in kernel root directory
 # echo "Creating zip package..."
-# ZIP_NAME="Capybara-GKI-$TIME.zip"
+# ZIP_NAME="Smol-GKI-$TIME.zip"
 # cd "$TEMP_ANY_KERNEL_DIR"
 # zip -r9 "$KERNEL_DIR/$ZIP_NAME" ./*
 # cd ..
