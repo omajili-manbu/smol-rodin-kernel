@@ -25,36 +25,12 @@ check_clang() {
 
 # Install Clang if needed
 if ! check_clang; then
-    echo "No valid Clang found. Installing..."
-    echo "1. AOSP r510928"
-    echo "2. Zyc Clang 23.0"
-    read -p "Choose [1-2]: " clang_choice
-
-    case "$clang_choice" in
-        1)
-            CLANG_URL="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android15-release/clang-r510928.tar.gz"
-            ARCHIVE_NAME="clang.tar.gz"
-            mkdir -p "$CLANG_DIR"
-            wget -P "$MAIN" "$CLANG_URL" -O "$MAIN/$ARCHIVE_NAME" || exit 1
-            tar -xf "$MAIN/$ARCHIVE_NAME" -C "$CLANG_DIR" || exit 1
-            rm -f "$MAIN/$ARCHIVE_NAME"
-            ;;
-        2)
             CLANG_URL="https://github.com/ZyCromerZ/Clang/releases/download/23.0.0git-20260130-release/Clang-23.0.0git-20260130.tar.gz"
             ARCHIVE_NAME="clang.tar.gz"
             mkdir -p "$CLANG_DIR"
             wget -P "$MAIN" "$CLANG_URL" -O "$MAIN/$ARCHIVE_NAME" || exit 1
             tar -xf "$MAIN/$ARCHIVE_NAME" -C "$CLANG_DIR" || exit 1
             rm -f "$MAIN/$ARCHIVE_NAME"
-            ;;
-
-
-        *)
-            echo "Invalid choice. Exiting..."
-            exit 1
-            ;;
-    esac
-
     if ! check_clang; then
         echo "Clang installation failed. Exiting..."
         exit 1
@@ -67,7 +43,7 @@ export SUBARCH=arm64
 
 # Build kernel
 make O="$OUT_DIR" CC=clang LLVM=1 LLVM_IAS=1 KCFLAGS="-w" $KERNEL_DEFCONFIG || exit 1
-make -j17 O="$OUT_DIR" CC=clang LLVM=1 LLVM_IAS=1 KCFLAGS="-w" || exit 1
+make -j16 O="$OUT_DIR" CC=clang LLVM=1 LLVM_IAS=1 KCFLAGS="-w" || exit 1
 
 # Clean up old kernel zip files
 echo "Cleaning up old kernel zip files..."
@@ -75,41 +51,41 @@ find "$KERNEL_DIR" -maxdepth 1 -type f -name "Capybara-GKI-*.zip" -exec rm -v {}
 
 # Create temporary anykernel directory
 TIME=$(date "+%Y%m%d-%H%M%S")
-TEMP_ANY_KERNEL_DIR="$KERNEL_DIR/anykernel_temp"
-rm -rf "$TEMP_ANY_KERNEL_DIR"
+# TEMP_ANY_KERNEL_DIR="$KERNEL_DIR/anykernel_temp"
+# rm -rf "$TEMP_ANY_KERNEL_DIR"
 
 # Clone entire anykernel directory
-echo "Cloning anykernel directory..."
-if [ -d "$KERNEL_DIR/anykernel" ]; then
-    cp -r "$KERNEL_DIR/anykernel" "$TEMP_ANY_KERNEL_DIR"
-else
-    echo "Error: anykernel directory not found!"
-    exit 1
-fi
+# echo "Cloning anykernel directory..."
+# if [ -d "$KERNEL_DIR/anykernel" ]; then
+#     cp -r "$KERNEL_DIR/anykernel" "$TEMP_ANY_KERNEL_DIR"
+# else
+#     echo "Error: anykernel directory not found!"
+#     exit 1
+# fi
 
 # Copy kernel image
-if [ -f "$ZIMAGE_DIR/Image.gz-dtb" ]; then
-    cp -v "$ZIMAGE_DIR/Image.gz-dtb" "$TEMP_ANY_KERNEL_DIR/"
-elif [ -f "$ZIMAGE_DIR/Image.gz" ]; then
-    cp -v "$ZIMAGE_DIR/Image.gz" "$TEMP_ANY_KERNEL_DIR/"
-elif [ -f "$ZIMAGE_DIR/Image" ]; then
-    cp -v "$ZIMAGE_DIR/Image" "$TEMP_ANY_KERNEL_DIR/"
-fi
+# if [ -f "$ZIMAGE_DIR/Image.gz-dtb" ]; then
+#     cp -v "$ZIMAGE_DIR/Image.gz-dtb" "$TEMP_ANY_KERNEL_DIR/"
+# elif [ -f "$ZIMAGE_DIR/Image.gz" ]; then
+#     cp -v "$ZIMAGE_DIR/Image.gz" "$TEMP_ANY_KERNEL_DIR/"
+# elif [ -f "$ZIMAGE_DIR/Image" ]; then
+#     cp -v "$ZIMAGE_DIR/Image" "$TEMP_ANY_KERNEL_DIR/"
+# fi
 
 # Create zip file in kernel root directory
-echo "Creating zip package..."
-ZIP_NAME="Capybara-GKI-$TIME.zip"
-cd "$TEMP_ANY_KERNEL_DIR"
-zip -r9 "$KERNEL_DIR/$ZIP_NAME" ./*
-cd ..
-
-# Clean up temporary directory
-rm -rf "$TEMP_ANY_KERNEL_DIR"
+# echo "Creating zip package..."
+# ZIP_NAME="Capybara-GKI-$TIME.zip"
+# cd "$TEMP_ANY_KERNEL_DIR"
+# zip -r9 "$KERNEL_DIR/$ZIP_NAME" ./*
+# cd ..
+#
+# # Clean up temporary directory
+# rm -rf "$TEMP_ANY_KERNEL_DIR"
 
 BUILD_END=$(date +"%s")
 DIFF=$((BUILD_END - BUILD_START))
 echo -e "\n=========================================="
 echo "Build completed in $((DIFF / 60))m $((DIFF % 60))s"
-echo "Final zip: $KERNEL_DIR/$ZIP_NAME"
-echo "Zip size: $(du -h "$KERNEL_DIR/$ZIP_NAME" | cut -f1)"
+# echo "Final zip: $KERNEL_DIR/$ZIP_NAME"
+# echo "Zip size: $(du -h "$KERNEL_DIR/$ZIP_NAME" | cut -f1)"
 echo "=========================================="
