@@ -972,7 +972,7 @@ ifdef CONFIG_LTO_CLANG
 ifdef CONFIG_LTO_CLANG_THIN
 CC_FLAGS_LTO	:= -flto=thin -fsplit-lto-unit
 else
-CC_FLAGS_LTO	:= -flto
+CC_FLAGS_LTO	:= -flto=full
 endif
 
 ifeq ($(SRCARCH),x86)
@@ -981,9 +981,6 @@ CC_FLAGS_LTO	+= -fvisibility=hidden
 else
 CC_FLAGS_LTO	+= -fvisibility=default
 endif
-
-# Limit inlining across translation units to reduce binary size
-KBUILD_LDFLAGS += -mllvm -import-instr-limit=5
 
 # Check for frame size exceeding threshold during prolog/epilog insertion
 # when using lld < 13.0.0.
@@ -995,8 +992,8 @@ endif
 endif
 
 ifdef CONFIG_LTO
-KBUILD_CFLAGS	+= -fno-lto $(CC_FLAGS_LTO)
-KBUILD_AFLAGS	+= -fno-lto
+KBUILD_CFLAGS	+= $(CC_FLAGS_LTO)
+KBUILD_AFLAGS	+=
 export CC_FLAGS_LTO
 endif
 
