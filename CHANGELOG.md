@@ -7,6 +7,7 @@ v0.0.2:
 - Add missing dir_hash struct nomount_dir_node member (otherwise it fails to build!).
 - Fix nomount runtime crash due to mistaken kmem_cache_create on nomount_child triggering a memory bug, and fix two other bugs, these three NoMount changes were diagnosed by Claude Sonnet 4.6 (Adaptive).
 - Re-enable AnyKernel generation as requested by Poco X7 Pro community Telegram group.
+- Add more compiler optimizations (detailed below)
 
 
 Changes from Capybara kernel to Smol kernel:
