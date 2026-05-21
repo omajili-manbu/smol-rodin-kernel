@@ -837,7 +837,7 @@ endif # need-config
 KBUILD_CFLAGS	+= -fno-delete-null-pointer-checks
 
 ifdef CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
-KBUILD_CFLAGS += -O3 -mcpu=cortex-a725 -mllvm -polly
+KBUILD_CFLAGS += -O3 -mcpu=cortex-a725 -mtune=cortex-a725 -mllvm -polly -mllvm -polly-ast-use-context -mllvm -polly-invariant-load-hoisting -mllvm -polly-loopfusion-greedy -mllvm -polly-run-inliner -mllvm -polly-vectorizer=stripmine -mllvm -polly-position=before-vectorizer
 KBUILD_RUSTFLAGS += -Copt-level=2
 else ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
 KBUILD_CFLAGS += -Os
