@@ -12,7 +12,7 @@ v0.0.2:
 
 Changes from Capybara kernel to Smol kernel:
 - Use various optimization commits dropped from Capybara 4.0 to 5.0
-- KernelSU by tiann, enabled by default
+- KernelSU by tiann, enabled by default, with KowSU manager support
 - susfs by simonpunk, enabled by default
 - susfs enhanced changes by Enginex0, enabled by default
 - vc-teahouse's latest changes to Baseband-guard
