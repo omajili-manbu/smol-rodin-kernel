@@ -973,6 +973,7 @@ ifdef CONFIG_LTO_CLANG_THIN
 CC_FLAGS_LTO	:= -flto=thin -fsplit-lto-unit
 else
 CC_FLAGS_LTO	:= -flto=full
+KBUILD_LDFLAGS += $(call ld-option,--lto-whole-program-visibility,--lto-O3,--lto-CGO3)
 endif
 
 ifeq ($(SRCARCH),x86)
