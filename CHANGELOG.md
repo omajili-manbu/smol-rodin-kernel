@@ -31,6 +31,11 @@ v0.2.0:
     * dimensity 9500S version: Cortex A720 instructions with Cortex X925 instruction costs model.
 }
 
+v0.2.1:
+- Updated KernelSU and susfs
+- A bit of changes from android15-6.6 branch
+- Introduced Kernel local version string containing flavor + version of smol kernel
+
 Changes from Capybara kernel to Smol kernel:
 - Use various optimization commits dropped from Capybara 4.0 to 5.0
 - KernelSU by tiann, enabled by default, with KowSU manager support
