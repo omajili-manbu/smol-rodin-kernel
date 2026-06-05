@@ -4,3 +4,4 @@
 f4dbd8484690b6061a1049980a52c9b576d790d7 849c426b2d3bf18c4b5454410d6f0dea70ea949a KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1780406533 -0300	reset: moving to HEAD~2
 849c426b2d3bf18c4b5454410d6f0dea70ea949a 06512bdefdd1dc3e877a6b55c91cbf0ba7649258 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1780406643 -0300	commit: susfs by simonpunk
 06512bdefdd1dc3e877a6b55c91cbf0ba7649258 5747eb54d2c4495bc1774d23e6594f6e9805d835 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1780406669 -0300	cherry-pick: KowSU manager support
+5747eb54d2c4495bc1774d23e6594f6e9805d835 9a78c1ccd91bad658b919e49fd5e7e618822da23 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1780678528 -0300	pull (finish): refs/heads/main onto 04f2084fe8dd08cacdcd90a4e2a1f6cb39fbfd52
