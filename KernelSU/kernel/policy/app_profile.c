@@ -114,8 +114,8 @@ int escape_with_root_profile(void)
         return -ENOMEM;
     }
 
-    if (susfs_is_current_ksu_domain()) {
-        pr_warn("Already root, don't escape!\n");
+    if (test_thread_flag(TIF_KSU_DISABLE_ESCAPE_WITH_ROOT)) {
+        pr_warn("TIF_KSU_DISABLE_ESCAPE_WITH_ROOT found, don't escape!\n");
         goto out_abort_creds;
     }
 
@@ -178,6 +178,10 @@ int escape_with_root_profile(void)
 
     if (likely(test_thread_flag(TIF_SECCOMP)))
         disable_seccomp();
+
+    if (profile->flags & FLAG_KSU_NO_NEW_PRIVS) {
+        set_thread_flag(TIF_KSU_DISABLE_ESCAPE_WITH_ROOT);
+    }
 
     setup_mount_ns(profile->namespaces);
     ksu_put_root_profile(profile);
