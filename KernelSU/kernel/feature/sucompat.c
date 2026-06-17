@@ -14,6 +14,7 @@
 #include <linux/susfs_def.h>
 #include <linux/namei.h>
 #include <linux/minmax.h>
+#include <linux/fs_struct.h>
 #include "selinux/selinux.h"
 #include "objsec.h"
 
@@ -187,6 +188,12 @@ int ksu_handle_execveat_sucompat(int *fd, struct filename **filename_ptr,
     if (likely(memcmp(filename->name, su_path, sizeof(su_path))))
         return 0;
 
+    if (current_chrooted())
+    {
+        pr_err("ksu_handle_execveat_sucompat: su found but NOT allowed! Because current process is running in chrooted environment\n");
+        return 0;
+    }
+
     pr_info("ksu_handle_execveat_sucompat: su found\n");
 
     memcpy((void *)filename->name, ksud_path, sizeof(ksud_path));
@@ -224,6 +231,11 @@ int ksu_handle_faccessat(int *dfd, const char __user **filename_user, int *mode,
     strncpy_from_user(path, *filename_user, sizeof(path));
 
     if (unlikely(!memcmp(path, su_path, sizeof(su_path)))) {
+        if (current_chrooted())
+        {
+            pr_err("ksu_handle_faccessat: su found but NOT allowed! Because current process is running in chrooted environment\n");
+            return 0;
+        }
         pr_info("ksu_handle_faccessat: su->sh!\n");
         *filename_user = sh_user_path();
     }
@@ -239,6 +251,11 @@ int ksu_handle_stat(int *dfd, struct filename **filename, int *flags) {
     if (likely(memcmp((*filename)->name, su_path, sizeof(su_path))))
         return 0;
 
+    if (current_chrooted())
+    {
+        pr_err("ksu_handle_stat: su found but NOT allowed! Because current process is running in chrooted environment\n");
+        return 0;
+    }
     pr_info("ksu_handle_stat: su->sh!\n");
     memcpy((void *)((*filename)->name), sh_path, sizeof(sh_path));
     return 0;
@@ -254,6 +271,11 @@ int ksu_handle_stat(int *dfd, const char __user **filename_user, int *flags)
     strncpy_from_user(path, *filename_user, sizeof(path));
 
     if (unlikely(!memcmp(path, su_path, sizeof(su_path)))) {
+        if (current_chrooted())
+        {
+            pr_err("ksu_handle_stat: su found but NOT allowed! Because current process is running in chrooted environment\n");
+            return 0;
+        }
         pr_info("ksu_handle_stat: su->sh!\n");
         *filename_user = sh_user_path();
     }
