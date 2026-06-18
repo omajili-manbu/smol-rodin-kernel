@@ -15,3 +15,5 @@ f4dbd8484690b6061a1049980a52c9b576d790d7 849c426b2d3bf18c4b5454410d6f0dea70ea949
 5c5518c5395c23af603f9ca61bb6c67f4f3785de f0f4539b34cb28efdef2ed96ab2a1dfe112eaab8 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1781715330 -0300	pull: Fast-forward
 f0f4539b34cb28efdef2ed96ab2a1dfe112eaab8 a693dcae2802cc9b5e5402268254e5675293ee35 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1781715470 -0300	commit: susfs by simonpunk
 a693dcae2802cc9b5e5402268254e5675293ee35 3a81b7dfde343f7b1d89119670e69ed522d5b681 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1781715519 -0300	cherry-pick: KowSU manager support
+3a81b7dfde343f7b1d89119670e69ed522d5b681 21c67033f9e33c7badbde9513ec2bb0d8368febe KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1781716774 -0300	commit: correct KSU for KowS
+21c67033f9e33c7badbde9513ec2bb0d8368febe 62ea75450db7a34d79254d1002699efb5403aa98 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1781805844 -0300	pull (finish): refs/heads/main onto 6c97d1dd0011e9d14cdf6082d84a98c5c802eec5

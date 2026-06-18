@@ -24,3 +24,9 @@ f4dbd8484690b6061a1049980a52c9b576d790d7 849c426b2d3bf18c4b5454410d6f0dea70ea949
 f0f4539b34cb28efdef2ed96ab2a1dfe112eaab8 f0f4539b34cb28efdef2ed96ab2a1dfe112eaab8 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1781715342 -0300	reset: moving to FETCH_HEAD
 f0f4539b34cb28efdef2ed96ab2a1dfe112eaab8 a693dcae2802cc9b5e5402268254e5675293ee35 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1781715470 -0300	commit: susfs by simonpunk
 a693dcae2802cc9b5e5402268254e5675293ee35 3a81b7dfde343f7b1d89119670e69ed522d5b681 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1781715519 -0300	cherry-pick: KowSU manager support
+3a81b7dfde343f7b1d89119670e69ed522d5b681 21c67033f9e33c7badbde9513ec2bb0d8368febe KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1781716774 -0300	commit: correct KSU for KowS
+21c67033f9e33c7badbde9513ec2bb0d8368febe 6c97d1dd0011e9d14cdf6082d84a98c5c802eec5 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1781805844 -0300	pull (start): checkout 6c97d1dd0011e9d14cdf6082d84a98c5c802eec5
+6c97d1dd0011e9d14cdf6082d84a98c5c802eec5 84c52958527348262f5b897a4ceb7cb652c35aa9 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1781805844 -0300	pull (pick): susfs by simonpunk
+84c52958527348262f5b897a4ceb7cb652c35aa9 922279d7956e4157c41426c41171c07c13f49175 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1781805844 -0300	pull (pick): KowSU manager support
+922279d7956e4157c41426c41171c07c13f49175 62ea75450db7a34d79254d1002699efb5403aa98 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1781805844 -0300	pull (pick): correct KSU for KowS
+62ea75450db7a34d79254d1002699efb5403aa98 62ea75450db7a34d79254d1002699efb5403aa98 KyunLFA <72685096+KyunLFA@users.noreply.github.com> 1781805844 -0300	pull (finish): returning to refs/heads/main
