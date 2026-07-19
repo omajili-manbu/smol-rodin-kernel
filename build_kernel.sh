@@ -41,9 +41,27 @@ fi
 export ARCH=arm64
 export SUBARCH=arm64
 
+# Temporarily restore KernelSU .git for version detection
+# KernelSU Kbuild computes KSU_VERSION from git rev-list --count HEAD.
+# The .git dir is renamed to dot-git-renamed in the smol-rodin-kernel repo
+# to avoid nested-git issues. We restore it here so the version is correct.
+KSU_GIT_RENAMED="$KERNEL_DIR/KernelSU/dot-git-renamed"
+KSU_GIT_RESTORED=0
+if [ -d "$KSU_GIT_RENAMED" ] && [ ! -d "$KERNEL_DIR/KernelSU/.git" ]; then
+    mv "$KSU_GIT_RENAMED" "$KERNEL_DIR/KernelSU/.git"
+    KSU_GIT_RESTORED=1
+    echo "Temporarily restored KernelSU .git for version detection"
+fi
+
 # Build kernel
 make O="$OUT_DIR" CC=clang LLVM=1 LLVM_IAS=1 KCFLAGS="-w" $KERNEL_DEFCONFIG || exit 1
 make -j8 O="$OUT_DIR" CC=clang LLVM=1 LLVM_IAS=1 KCFLAGS="-w" || exit 1
+
+# Restore dot-git-renamed if we temporarily restored .git
+if [ "$KSU_GIT_RESTORED" = "1" ]; then
+    mv "$KERNEL_DIR/KernelSU/.git" "$KSU_GIT_RENAMED"
+    echo "Restored KernelSU dot-git-renamed"
+fi
 
 # Clean up old kernel zip files
 # echo "Cleaning up old kernel zip files..."
