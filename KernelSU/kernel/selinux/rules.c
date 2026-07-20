@@ -147,6 +147,17 @@ void apply_kernelsu_rules()
     // Allow system server kill su process
     ksu_allow(db, "system_server", KERNEL_SU_DOMAIN, "process", "getpgid");
     ksu_allow(db, "system_server", KERNEL_SU_DOMAIN, "process", "sigkill");
+    // Allow system_server OomAdjuster to adjust ksu daemon scheduling.
+    // Without this, every OomAdjuster scan triggers avc denial { setsched }
+    // system_server -> ksu:process, flooding the audit subsystem
+    // (audit_rate_limit=5, audit_backlog_limit=64) and causing audit_lost
+    // spikes that serialize on printk_lock, blocking UI threads for seconds.
+    // Observed: 22:04:33 ANR on com.android.settings coincided with
+    // audit_lost jumping from 10062 to 13229 in 1.3s.
+    ksu_allow(db, "system_server", KERNEL_SU_DOMAIN, "process", "setsched");
+    ksu_allow(db, "system_server", KERNEL_SU_DOMAIN, "process", "getsched");
+    ksu_allow(db, "system_server", KERNEL_SU_DOMAIN, "process", "getattr");
+    ksu_allow(db, "system_server", KERNEL_SU_DOMAIN, "process", "setrlimit");
 
     rcu_assign_pointer(selinux_state.policy, pol);
     synchronize_rcu();
